@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/animation.dart';
 import 'package:flutter_assignment/config/config.dart';
 import 'package:flutter_assignment/models/authors.dart';
 import 'package:flutter_assignment/models/quotes.dart';
+import 'package:flutter_assignment/views/author_detail_screen/author_detail_screen_view.dart';
 import 'package:flutter_assignment/views/tag_detail_screen/tag_detail_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
@@ -14,11 +16,12 @@ class DashboardScreenViewModel extends BaseViewModel with DashboradService {
   List<Tags> tagsList = [];
   List<Quotes> quotesList = [];
   List<Authors> authorList = [];
+  AnimationController? animationController;
+  Animation<double>? animation;
 
-  // TabController? tabController;
+  bool isGrid = true;
 
   DashboardScreenViewModel() {
-    // tabController!.addListener(() { notifyListeners(); });
     loadItems();
   }
 
@@ -36,5 +39,14 @@ class DashboardScreenViewModel extends BaseViewModel with DashboradService {
 
   void tagOnTapHandler(int id) {
     Get.to(TagDetailScreenView(id));
+  }
+
+  void authorOnTapHandler(int id) {
+    Get.to(AuthorDetailScreenView(id));
+  }
+
+  void layoutChangeHandler() {
+    isGrid = !isGrid;
+    notifyListeners();
   }
 }

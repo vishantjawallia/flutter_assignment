@@ -1,9 +1,15 @@
 library author_detail_screen_view;
 
+import 'package:flutter_assignment/config/config.dart';
+import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
+import '../../models/authors.dart';
+import '../../theme/palettes.dart';
 import 'author_detail_screen_view_model.dart';
+import 'components/app_bar.dart';
+import 'widgets/quote_boxed.dart';
 
 part 'author_detail_screen_mobile.dart';
 part 'author_detail_screen_tablet.dart';
@@ -13,7 +19,7 @@ class AuthorDetailScreenView extends StatelessWidget {
   static const routeName = '/author_detail_screen';
   final int? id;
 
-  const AuthorDetailScreenView({super.key, this.id});
+  const AuthorDetailScreenView(this.id, {super.key});
 
   @override
   Widget build(BuildContext context) {

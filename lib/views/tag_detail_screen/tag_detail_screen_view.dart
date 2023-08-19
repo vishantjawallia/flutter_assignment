@@ -1,9 +1,14 @@
 library tag_detail_screen_view;
 
+import 'package:flutter_assignment/models/authors.dart';
+import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
+import '../../theme/palettes.dart';
+import 'components/app_bar.dart';
 import 'tag_detail_screen_view_model.dart';
+import 'widgets/quote_boxed.dart';
 
 part 'tag_detail_screen_mobile.dart';
 part 'tag_detail_screen_tablet.dart';

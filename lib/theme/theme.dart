@@ -6,8 +6,15 @@ class CustomTheme {
   static final ThemeData light = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: Palettes.white,
+    appBarTheme: ThemeData().appBarTheme.copyWith(
+          backgroundColor: Palettes.white,
+        ),
     // primaryIconTheme: const IconThemeData(color: Colors.white),
+    primaryIconTheme: const IconThemeData(color: Colors.black),
     primaryColorDark: Palettes.primary,
+    iconTheme: ThemeData().iconTheme.copyWith(
+          color: Palettes.grey,
+        ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.montserrat(fontSize: 32, color: Palettes.textColor),
       displayMedium: GoogleFonts.montserrat(fontSize: 30, color: Palettes.textColor),
@@ -31,8 +38,13 @@ class CustomTheme {
   static final ThemeData dark = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: Palettes.black,
-    // primaryIconTheme: const IconThemeData(color: Colors.white),
-    primaryColorDark: Palettes.primary,
+    primaryIconTheme: const IconThemeData(color: Colors.white),
+    appBarTheme: ThemeData().appBarTheme.copyWith(
+          backgroundColor: Palettes.black,
+        ),
+    iconTheme: ThemeData().iconTheme.copyWith(
+          color: Palettes.white,
+        ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.montserrat(fontSize: 34, color: Palettes.white),
       displayMedium: GoogleFonts.montserrat(fontSize: 32, color: Palettes.white),

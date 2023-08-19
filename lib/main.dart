@@ -10,9 +10,9 @@ import 'package:flutter_assignment/theme/theme.dart';
 import 'package:get/get.dart';
 import 'core/locator.dart';
 import 'core/providers.dart';
-import 'core/services/navigator_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'core/services/navigator_service.dart';
 import 'views/splash/splash_view.dart';
 
 void main() async {
@@ -26,40 +26,38 @@ void main() async {
   runApp(
     MultiProvider(
       providers: ProviderInjector.providers,
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
 
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.native,
-      title: APP_NAME,
-      // darkTheme: CustomTheme.dark,
-      theme: CustomTheme.light,
-      navigatorKey: locator<NavigatorService>().navigatorKey,
-      getPages: Routes.routes,
-      home: const SplashView(),
-    );
+    if (kIsWeb) {
+      return GetMaterialApp(
+        key: _key,
+        debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.native,
+        title: APP_NAME,
+        theme: CustomTheme.light,
+        routes: Routes.routes,
+        initialRoute: SplashView.routeName,
+      );
+    } else {
+      return GetMaterialApp(
+        key: _key,
+        debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.native,
+        title: APP_NAME,
+        theme: CustomTheme.light,
+        getPages: Routes.getRoutes,
+        navigatorKey: locator<NavigatorService>().navigatorKey,
+        home: const SplashView(),
+      );
+    }
   }
 }

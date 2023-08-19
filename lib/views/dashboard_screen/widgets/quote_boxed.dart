@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assignment/theme/palettes.dart';
 import 'package:get/get.dart';
 
 class QuoteBoxed extends StatelessWidget {
   final String? name;
   final Color? color;
   final String? author;
+  final VoidCallback? authorOnTap;
+
   const QuoteBoxed({
     super.key,
     required this.name,
     required this.author,
     required this.color,
+    this.authorOnTap,
   });
 
   @override
@@ -35,15 +37,18 @@ class QuoteBoxed extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Text(
-            "- ${author ?? "Vishant Jawallia"}",
-            style: TextStyle(
-              fontSize: Get.textTheme.headlineSmall!.fontSize,
-              fontWeight: FontWeight.w700,
-              height: 1.53,
-              color: Palettes.black,
+          child: GestureDetector(
+            onTap: author != null ? authorOnTap : null,
+            child: Text(
+              "- ${author ?? "Vishant Jawallia"}",
+              style: TextStyle(
+                fontSize: Get.textTheme.headlineSmall!.fontSize,
+                fontWeight: FontWeight.w700,
+                height: 1.53,
+                color: Get.textTheme.headlineSmall!.color,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
       ],

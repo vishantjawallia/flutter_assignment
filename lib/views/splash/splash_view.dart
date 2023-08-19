@@ -24,8 +24,8 @@ class SplashView extends StatelessWidget {
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(
           mobile: (_) => _SplashMobile(viewModel),
-          desktop: (_) => _SplashDesktop(viewModel),
-          tablet: (_) => _SplashTablet(viewModel),
+          desktop: (_) => _SplashMobile(viewModel),
+          tablet: (_) => _SplashMobile(viewModel),
         );
       },
     );

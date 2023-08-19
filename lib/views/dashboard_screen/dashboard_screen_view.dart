@@ -12,8 +12,10 @@ import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
+import '../../models/authors.dart';
 import 'components/app_bar.dart';
 import 'dashboard_screen_view_model.dart';
+import 'widgets/quote_boxed2.dart';
 
 part 'dashboard_screen_mobile.dart';
 part 'dashboard_screen_tablet.dart';
@@ -31,8 +33,8 @@ class DashboardScreenView extends StatelessWidget {
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(
           mobile: (_) => _DashboardScreenMobile(viewModel),
-          desktop: (_) => _DashboardScreenDesktop(viewModel),
-          tablet: (_) => _DashboardScreenTablet(viewModel),
+          desktop: (_) => _DashboardScreenMobile(viewModel),
+          tablet: (_) => _DashboardScreenMobile(viewModel),
         );
       },
     );

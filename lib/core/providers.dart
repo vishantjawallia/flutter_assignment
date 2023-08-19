@@ -15,6 +15,6 @@ class ProviderInjector {
   ];
 
   static List<SingleChildWidget> _dependentServices = [];
-  
+
   static List<SingleChildWidget> _consumableServices = [];
 }
