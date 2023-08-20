@@ -2,7 +2,6 @@
 
 part of dashboard_screen_view;
 
-// ignore: must_be_immutable
 class _DashboardScreenMobile extends StatefulWidget {
   final DashboardScreenViewModel viewModel;
 
@@ -17,7 +16,6 @@ class _DashboardScreenMobileState extends State<_DashboardScreenMobile> with Tic
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     tabController = TabController(length: widget.viewModel.quotesList.length, vsync: this);
   }

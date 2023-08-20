@@ -3,12 +3,12 @@
 library dashboard_screen_view;
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter_assignment/helpers/%20extension.dart';
-import 'package:flutter_assignment/theme/palettes.dart';
+// import 'package:flutter_assignment/helpers/%20extension.dart';
+// import 'package:flutter_assignment/theme/palettes.dart';
 import 'package:flutter_assignment/views/dashboard_screen/widgets/quote_boxed.dart';
 
 import 'package:flutter_assignment/views/dashboard_screen/widgets/tag_boxed.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
