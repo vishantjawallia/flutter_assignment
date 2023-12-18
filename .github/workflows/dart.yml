@@ -1,0 +1,67 @@
+
+name: Flutter Build and Test
+
+on:
+  push:
+    branches:
+      - main # Change this to the branch you want to trigger the build on
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        flutter_version: [2.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v4
+      with:
+        flutter-version: ${{ matrix.flutter_version }}
+
+    - name: Cache Flutter SDK
+      uses: actions/cache@v2
+      with:
+        path: ~/.pub-cache
+        key: flutter-pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Analyze code
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build APK
+      run: flutter build apk
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Release to Play Store Beta
+      uses: wzieba/gradle-play-publisher@v3
+      with:
+        serviceAccountJson: ${{ secrets.PLAY_STORE_JSON }}
+        packageName: your.package.name
+        track: beta
+        releaseStatus: completed
+
+    - name: Notify on Slack
+      uses: rtCamp/action-slack@v2
+      with:
+        channel: your-slack-channel
+        icon_url: https://your.icon.url.png
+        username: GitHub Actions
+        text: 'The latest build has been successfully deployed to the Google Play Store beta track.'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
